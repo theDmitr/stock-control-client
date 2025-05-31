@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@flaticon/flaticon-uicons/css/all/all";
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// Общие переменные цвета (для всех тем)
+:root {
+  // Цвета по умолчанию (светлая тема)
+  --color-primary: #CF8C00;
+  --color-secondary: #fafafa;
+  --color-background: #eeeeee;
+  --color-text: #616261;
+}
+
+// Тёмная тема переопределяет значения переменных
+.dark-mode {
+  //--color-primary: #1a1a1a;
+  --color-secondary: #282c34;
+  --color-background: #171717;
+  --color-text: #dcdfe6;
+}
+
+body {
+  background: var(--color-background);
+}
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,153 @@
+<div class="container py-5">
+    <!-- Хлебные крошки -->
+    <nav *ngIf="product?.category"
+         aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/">{{ product?.category?.name }}</a></li>
+        </ol>
+    </nav>
+
+    <div *ngIf="product; else notFound" class="card border-0 shadow-sm mb-5">
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <!-- Галерея изображений -->
+                <div class="col-lg-6">
+                    <div class="product-gallery mb-4">
+                        <img
+                                [src]="selectedImage || product.images[0]"
+                                alt="{{ product.name }}"
+                                class="img-fluid rounded main-image"
+                        >
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <div
+                                *ngFor="let img of product.images; let i = index"
+                                (click)="selectImage(img)"
+                                [class.active]="selectedImage === img"
+                                class="thumbnail"
+                        >
+                            <img [src]="img" alt="Thumbnail {{i+1}}" class="img-fluid rounded" style="width: 80px; height: 60px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Информация о товаре -->
+                <div class="col-lg-6">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <span *ngIf="product.category"
+                                  class="badge bg-success">
+                                {{ product.category.name }}
+                            </span>
+                            <h1 class="h2 mb-2 mt-2">{{ product.name }}</h1>
+                        </div>
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+
+                    <div class="price-tag mb-4">{{ product.price | currency:'RUB':'symbol-narrow':'1.0-0' }}</div>
+
+                    <p class="lead mb-4">{{ product.description }}</p>
+
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="input-group" style="width: 140px;">
+                            <button class="btn btn-outline-secondary" type="button" (click)="decrementQuantity()">-</button>
+                            <input type="text" class="form-control text-center" [value]="quantity" readonly>
+                            <button class="btn btn-outline-secondary" type="button" (click)="incrementQuantity()">+</button>
+                        </div>
+
+                        <button class="btn btn-primary btn-lg add-to-cart-btn flex-grow-1">
+                            <i class="bi bi-cart-plus me-2"></i>Добавить в корзину
+                        </button>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-dark flex-grow-1">
+                            <i class="bi bi-arrow-repeat me-2"></i>Сравнить
+                        </button>
+                        <button class="btn btn-outline-dark flex-grow-1">
+                            <i class="bi bi-share me-2"></i>Поделиться
+                        </button>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-truck fs-3 text-primary me-2"></i>
+                            <div>
+                                <div class="fw-bold">Бесплатная доставка</div>
+                                <small class="text-muted">по всей России</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-shield-check fs-3 text-primary me-2"></i>
+                            <div>
+                                <div class="fw-bold">2 года гарантии</div>
+                                <small class="text-muted">официальная поставка</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Технические характеристики -->
+    <div *ngIf="product" class="card border-0 shadow-sm mb-5">
+        <div class="card-header bg-white py-3">
+            <h2 class="h5 mb-0">Технические характеристики</h2>
+        </div>
+        <div class="card-body">
+            <table class="table specs-table mb-0">
+                <tbody>
+                <tr *ngFor="let feature of product.features">
+                    <td class="text-muted" style="width: 35%;">{{ feature.featureName }}</td>
+                    <td class="fw-medium">{{ feature.featureValue }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Сопутствующие товары -->
+<!--    <div *ngIf="relatedProducts.length > 0">-->
+<!--        <div class="d-flex justify-content-between align-items-center mb-4">-->
+<!--            <h2 class="h4 mb-0">Сопутствующие товары</h2>-->
+<!--            <a href="#" class="btn btn-link">Все товары категории</a>-->
+<!--        </div>-->
+
+<!--        <div class="row g-4">-->
+<!--            <div *ngFor="let related of relatedProducts" class="col-md-4">-->
+<!--                <div class="card h-100 related-product-card border-0 shadow-sm">-->
+<!--                    <img [src]="related.images[0]" class="card-img-top" alt="{{ related.name }}">-->
+<!--                    <div class="card-body">-->
+<!--                        <h3 class="h6 card-title">{{ related.name }}</h3>-->
+<!--                        <div class="d-flex justify-content-between align-items-center mt-3">-->
+<!--                            <span class="text-danger fw-bold">{{ related.price | currency:'RUB':'symbol-narrow':'1.0-0' }}</span>-->
+<!--                            <a [routerLink]="['/products', related.id]" class="btn btn-sm btn-outline-primary">-->
+<!--                                Подробнее-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+<ng-template #notFound>
+    <div class="text-center py-5">
+        <div class="py-5">
+            <i class="bi bi-exclamation-triangle display-1 text-warning"></i>
+            <h2 class="mt-4">Товар не найден</h2>
+            <p class="lead mb-4">Извините, запрашиваемый товар недоступен или был удалён</p>
+            <a routerLink="/products" class="btn btn-primary btn-lg px-4">
+                <i class="bi bi-arrow-left me-2"></i>Вернуться в каталог
+            </a>
+        </div>
+    </div>
+</ng-template>

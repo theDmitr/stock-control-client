@@ -1,0 +1,19 @@
+<div class="category-card">
+    <div class="category-image">
+        <img
+                [src]="category.image"
+                alt="{{ category.name }}"
+                class="img-fluid rounded main-image"
+        />
+    </div>
+
+    <div class="category-content">
+        <div class="category-title">{{ category.name }}</div>
+        <div class="products-count">
+            ({{ category.productsCount }} {{ productsCountText(category.productsCount) }})
+            <a routerLink="/products/category/{{category.id}}" class="basket-icon-link categoryProductsLink" *ngIf="category.productsCount > 0">
+                <i class="fi fi-rr-basket-shopping-simple basket-icon"></i>
+            </a>
+        </div>
+    </div>
+</div>

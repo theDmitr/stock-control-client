@@ -1,0 +1,37 @@
+.nav-link {
+    font-size: 1.2em;
+    font-weight: 550;
+    padding: 0 0;
+    color: #484f55;
+    transition: .2s ease;
+}
+
+.nav-link-container {
+    cursor: pointer;
+    align-items: center;
+    color: #484f55;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    i {
+        font-size: 2em;
+        padding-bottom: 0;
+        transform: translateY(10px);
+    }
+    transition: .2s ease;
+}
+
+.nav-link-container:hover {
+    color: var(--color-primary);
+    .nav-link {
+        color: var(--color-primary);
+    }
+}
+
+.profile-name {
+    margin-right: .4em;
+}

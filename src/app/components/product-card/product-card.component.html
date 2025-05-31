@@ -1,0 +1,16 @@
+<div class="product-grid">
+    <div class="product-card">
+        <div class="product-image">
+            <img
+                    [src]="product.images[0]"
+                    alt="{{ product.name }}"
+                    class="img-fluid rounded main-image"
+            >
+        </div>
+        <div class="product-content">
+            <p class="product-title">{{ product.name }}</p>
+            <p class="product-price">{{ product.price | currency:'RUB':'symbol'}}</p>
+        </div>
+        <a routerLink="/product/{{ product.id }}" class="btn btn-primary">Подробнее</a>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-panel {
+  background-color: #f8f8ff;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: height 0.3s ease-in-out;
+}
+
+.filter-panel.collapsed {
+  height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(222px, 1fr));
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.product-title {
+  font-weight: bold;
+  color: black;
+}
+
+.product-price {
+  color: green;
+}

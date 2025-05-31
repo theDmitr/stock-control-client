@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {HeaderComponent} from "./components/header/header.component";
+import {FooterComponent} from "./components/footer/footer.component";
+import {MainComponent} from "./components/main/main.component";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
-  `,
-  styles: [],
+  templateUrl: 'app.component.html',
+  styleUrl: 'app.component.scss',
+  imports: [
+    HeaderComponent,
+    FooterComponent,
+    MainComponent,
+    RouterOutlet
+  ],
+  standalone: true
 })
 export class AppComponent {
-  title = 'StockControl';
 }
