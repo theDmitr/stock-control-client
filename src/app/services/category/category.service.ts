@@ -1,17 +1,23 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Category} from "../../models/category/category";
+import {CategoryPageView} from "../../models/category/category";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class CategoryService {
-    private readonly categoriesUrl: string = 'http://localhost:8080/api/v1/categories';
+    private readonly SERVICE_URL = environment.ITEM_URL + '/categories';
 
     constructor(private httpClient: HttpClient) {}
 
-    public getAll(): Observable<Category[]> {
-        return this.httpClient.get<Category[]>(
-            this.categoriesUrl + '/list/page-view'
+    public getCategoriesToPageView(parentCategoryId: string = ''): Observable<CategoryPageView[]> {
+        let params = new HttpParams();
+
+        if (parentCategoryId) params = params.set('parentCategoryId', parentCategoryId);
+
+        return this.httpClient.get<CategoryPageView[]>(
+            `${this.SERVICE_URL}/list/page-view`,
+            { params }
         );
     }
 }

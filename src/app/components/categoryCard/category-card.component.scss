@@ -7,9 +7,9 @@
     box-shadow: inset 0 0 0 1px #dadcde;
     background-color: white;
     padding: 15px;
-    transition: ease .2s;
     height: 100%; /* Занимает всю доступную высоту */
     cursor: pointer;
+    transition: .3s ease;
 }
 
 .category-card:hover {
@@ -53,16 +53,22 @@
 }
 
 .products-count {
+    display: flex;
+    width: 100%;
     font-size: 14px;
     color: #666; /* Серый оттенок */
     margin-top: auto; /* Прижимаем счетчик к низу контентной области */
     padding-top: 8px; /* Дополнительный отступ */
 }
-.category-content {
-    padding-right: 40px; /* Защита от перекрытия текста иконкой */
-    /* остальные стили */
+
+.categoryProductsLink {
+    margin-left: auto;
+    font-size: 20px;
+    text-decoration: none;
+    transition: .3s ease;
 }
 
 .categoryProductsLink:hover {
-    filter: drop-shadow(0 0 0.4rem black);
+    filter: drop-shadow(0 0 0.8rem rgba(0, 0, 0, 0.4));
+    transform: scale(1.2);
 }

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {Product} from "../../models/product/product";
@@ -30,5 +30,14 @@ export class ProductService {
         return this.httpClient.get<ProductInfo>(
             `${this.SERVICE_URL}/${id}/info`
         );
+    }
+
+    getFilteredProducts(searchTerm: string = '', categoryId: string = ''): Observable<ProductPageView[]> {
+        let params = new HttpParams();
+
+        if (searchTerm) params = params.set('searchName', searchTerm);
+        if (categoryId) params = params.set('categoryId', categoryId);
+
+        return this.httpClient.get<ProductPageView[]>(`${this.SERVICE_URL}/list/page-view`, { params });
     }
 }

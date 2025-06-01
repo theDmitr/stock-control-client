@@ -1,5 +1,71 @@
+<!-- products-page.component.html -->
 <div class="container">
+    <div class="filter-header">
+        <button (click)="toggleFilterPanel()" class="toggle-btn">
+            {{ isFilterCollapsed ? 'Показать фильтры' : 'Скрыть фильтры' }}
+            <span class="icon">{{ isFilterCollapsed ? '▼' : '▲' }}</span>
+        </button>
+    </div>
+
+    <div class="filter-panel" [class.collapsed]="isFilterCollapsed">
+        <div class="filter-group">
+            <label for="searchInput">Поиск</label>
+            <input
+                    type="text"
+                    id="searchInput"
+                    [(ngModel)]="searchTerm"
+                    placeholder="Название продукта..."
+                    (keyup.enter)="applyFilters()"
+            >
+        </div>
+
+        <div class="filter-group">
+            <label for="categorySelect">Категория</label>
+            <select
+                    id="categorySelect"
+                    [(ngModel)]="categoryFilter"
+            >
+                <option [value]="''">Все категории</option>
+                <option
+                        *ngFor="let category of categories"
+                        [value]="category.id"
+                >
+                    {{ category.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="action-buttons">
+            <button class="apply-btn"
+                    (click)="applyFilters()">
+                <span class="button-text">Применить фильтры</span>
+                <span class="button-spinner"></span>
+            </button>
+            <button class="reset-btn" (click)="resetFilters()">
+                Сбросить фильтры
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="loading" class="loading-indicator">
+        <div class="spinner"></div>
+        Загрузка карточек товаров...
+    </div>
+
+    <div *ngIf="error" class="error-message">
+        {{ error }}
+        <button (click)="loadProducts()" class="retry-btn">Обновить</button>
+    </div>
+
+    <div *ngIf="products && products.length === 0 && !loading" class="no-results">
+        Продукты по заданным фильтрам не найдены
+        <button (click)="resetFilters()" class="reset-btn">Сбросить фильтры</button>
+    </div>
+
     <div class="product-grid">
-        <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+        <app-product-card
+                *ngFor="let product of products"
+                [product]="product"
+        ></app-product-card>
     </div>
 </div>

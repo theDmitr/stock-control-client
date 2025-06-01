@@ -21,6 +21,7 @@ export class ProductInfoPageComponent implements OnInit {
     product?: ProductInfo;
     selectedImage?: string;
     quantity: number = 1;
+    loading: boolean = true;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,9 +32,15 @@ export class ProductInfoPageComponent implements OnInit {
         this.route.params.subscribe(params => {
             const productId: string = params["productId"];
 
-            this.productService.getProductInfoById(productId).subscribe(
-                response => this.product = response
-            );
+            this.productService.getProductInfoById(productId).subscribe({
+                next: (response) => {
+                    this.product = response;
+                    this.loading = false;
+                },
+                error: () => {
+                    this.loading = false;
+                }
+            });
 
             if (this.product) {
                 this.selectedImage = this.product.images[0];

@@ -1,5 +1,5 @@
-import {Component, Input, numberAttribute} from '@angular/core';
-import {Category} from "../../models/category/category";
+import {Component, Input} from '@angular/core';
+import {CategoryPageView} from "../../models/category/category";
 import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
 
@@ -16,8 +16,7 @@ import {RouterLink} from "@angular/router";
     standalone: true
 })
 export class CategoryCardComponent {
-
-    @Input() category: any;
+    @Input() category: CategoryPageView | null = null;
 
     productsCountText(count: number): string {
         const cases = ["товар", "товара", "товаров"];
