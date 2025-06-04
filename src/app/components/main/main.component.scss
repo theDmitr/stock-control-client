@@ -1,18 +1,103 @@
-.content {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  overflow-y: auto;
-  height: 100%;
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-main {
-  display: flex;
-  justify-content: center;
-  flex: 0 0 100%;
-
+.dashboard-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-.main-container {
-  padding: 2em;
+.dashboard-card {
+    width: 300px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.card-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+.dashboard-card:nth-child(2) .card-icon {
+    background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+}
+
+.dashboard-card:nth-child(3) .card-icon {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.dashboard-card:nth-child(4) .card-icon {
+    background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+}
+
+.dashboard-card:nth-child(5) .card-icon {
+    background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+}
+
+.card-title {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.card-link {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #f8f9fa;
+    border-radius: 50px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.dashboard-card:hover .card-link {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        gap: 20px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .dashboard-card {
+        padding: 30px 15px;
+    }
 }

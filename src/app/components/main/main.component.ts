@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {CategoryCardComponent} from "../categoryCard/category-card.component";
 import {CategoriesComponent} from "../categories/categories.component";
 import {ProductsPageComponent} from "../products/products-page.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
     selector: "main-component",
@@ -10,7 +11,8 @@ import {ProductsPageComponent} from "../products/products-page.component";
     imports: [
         CategoryCardComponent,
         CategoriesComponent,
-        ProductsPageComponent
+        ProductsPageComponent,
+        RouterLink
     ],
     standalone: true
 })

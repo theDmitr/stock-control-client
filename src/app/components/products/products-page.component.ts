@@ -7,7 +7,7 @@ import {ProductCardComponent} from "../product-card/product-card.component";
 import {CommonModule, NgForOf} from "@angular/common";
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CategoryService} from '../../services/category/category.service';
-import {CategoryPageView} from '../../models/category/category';
+import {Category} from '../../models/category/category';
 
 @Component({
     selector: 'products-page',
@@ -27,7 +27,7 @@ export class ProductsPageComponent implements OnInit {
     searchTerm: string = '';
     categoryFilter: string = '';
     isFilterCollapsed: boolean = false;
-    categories: CategoryPageView[] = [];
+    categories: Category[] = [];
     loading: boolean = true;
     error: string | null = null;
 
@@ -51,7 +51,7 @@ export class ProductsPageComponent implements OnInit {
     }
 
     loadCategories(): void {
-        this.categoryService.getCategoriesToPageView().subscribe({
+        this.categoryService.getAll().subscribe({
             next: (categories) => {
                 this.categories = categories;
             },

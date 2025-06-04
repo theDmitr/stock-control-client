@@ -17,4 +17,8 @@ import {CommonModule} from '@angular/common';
 })
 export class HeaderComponent {
     constructor(protected authService: AuthService) {}
+
+    logout() {
+        this.authService.logout();
+    }
 }

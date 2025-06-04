@@ -2,10 +2,8 @@
   "name": "stock-control",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "prodStart": "ng serve --configuration=production --host 0.0.0.0",
+    "devStart": "ng serve --configuration=development"
   },
   "private": true,
   "dependencies": {

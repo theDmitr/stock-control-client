@@ -1,0 +1,82 @@
+.container {
+    max-width: 350px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; // Увеличим для места под ошибки
+    position: relative;
+}
+
+label {
+    font-weight: bold;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+input {
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all .3s ease-in-out;
+
+    &.invalid {
+        border-color: #e74c3c;
+        box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+    }
+}
+
+input:focus,
+button:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px #f0a500;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0a500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all .3s ease-in-out;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.field-error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    position: absolute;
+    bottom: -18px;
+    left: 2px;
+}

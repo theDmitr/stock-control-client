@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Авторизация</h2>
+
+    <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+        <div class="input-group">
+            <label for="username">Имя пользователя</label>
+            <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    [(ngModel)]="loginRequest.username"
+                    required>
+        </div>
+
+        <div class="input-group">
+            <label for="password">Пароль</label>
+            <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    [(ngModel)]="loginRequest.password"
+                    required>
+        </div>
+
+        <div *ngIf="isError" class="error-message">
+            Неверное имя пользователя или пароль
+        </div>
+
+        <button type="submit" [disabled]="!loginForm.valid">Войти</button>
+    </form>
+</div>
