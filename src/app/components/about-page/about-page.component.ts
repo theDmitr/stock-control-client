@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {ProductCardComponent} from "../product-card/product-card.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
     selector: "about-page-component",
@@ -10,7 +11,8 @@ import {ProductCardComponent} from "../product-card/product-card.component";
     imports: [
         FormsModule,
         NgForOf,
-        ProductCardComponent
+        ProductCardComponent,
+        RouterLink
     ],
     standalone: true
 })
