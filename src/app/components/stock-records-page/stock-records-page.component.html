@@ -1,0 +1,52 @@
+<div class="container">
+    <div *ngIf="!stockRecords && isLoading" class="loading-indicator">
+        <div class="spinner"></div>
+        Загрузка остатков...
+    </div>
+
+    <div *ngIf="(!stockRecords || stockRecords.length === 0) && !isLoading" class="empty-inventory">
+        <div class="py-5">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <h2>Нет данных об остатках</h2>
+            <p>В системе не найдено ни одной записи об остатках товаров</p>
+        </div>
+    </div>
+
+    <div *ngIf="!isLoading && stockRecords && stockRecords.length > 0" class="inventory-grid">
+        <div *ngFor="let item of stockRecords" class="inventory-card">
+            <!-- Основной контент товара -->
+            <div class="product-content">
+                <div class="product-image-container">
+                    <img [src]="item.productImage"
+                         alt="{{ item.productName }}"
+                         class="product-image">
+                </div>
+
+                <div class="product-info">
+                    <h3>
+                        <a [routerLink]="['/products', item.productId]" class="product-link">
+                            {{ item.productName }}
+                        </a>
+                    </h3>
+                </div>
+            </div>
+
+            <!-- Блок количества и склада -->
+            <div class="stock-info">
+                <div class="quantity">
+                    <i class="fa-solid fa-cubes"></i>
+                    {{ item.quantity }} шт.
+                </div>
+
+                <a [routerLink]="['/stock-holders', item.stockHolderId]" class="warehouse-link">
+                    <div class="warehouse-info">
+                        <img [src]="item.stockHolderImage"
+                             alt="{{ item.stockHolderName }}"
+                             class="warehouse-logo">
+                        <span>{{ item.stockHolderName }}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="stockHolder-card">
+    <div class="stockHolder-image">
+        <img
+                [src]="stockHolder?.stockHolderImage"
+                alt="{{ stockHolder?.stockHolderName }}"
+                class="img-fluid rounded main-image"
+        />
+    </div>
+
+    <div class="stockHolder-content">
+        <div class="stockHolder-title">{{ stockHolder?.stockHolderName }}</div>
+        <div class="products-count" *ngIf="stockHolder">
+            Общее кол-во остатков: {{ stockHolder.stockRecordsQuantity }}
+        </div>
+    </div>
+</div>

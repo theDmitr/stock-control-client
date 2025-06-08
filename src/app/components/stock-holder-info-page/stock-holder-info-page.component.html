@@ -1,0 +1,61 @@
+<div class="container">
+    <div *ngIf="!stockHolder && isLoading" class="loading-indicator">
+        <div class="spinner"></div>
+        Загрузка карточки склада...
+    </div>
+
+    <div *ngIf="!stockHolder && !isLoading" class="text-center py-5">
+        <div class="py-5">
+            <i class="bi bi-exclamation-triangle display-1 text-warning"></i>
+            <h2 class="mt-4">Склад не найден</h2>
+            <p class="lead mb-4">Извините, запрашиваемый склад недоступен или был удалён</p>
+            <a routerLink="/stock-holders" class="btn btn-primary btn-lg px-4">
+                <i class="bi bi-arrow-left me-2"></i>Вернуться к списку складов
+            </a>
+        </div>
+    </div>
+
+    <ng-container *ngIf="stockHolder && !isLoading">
+        <div class="warehouse-header">
+            <div class="logo-container">
+                <img [src]="stockHolder.stockHolderImage"
+                     alt="Логотип склада"
+                     class="warehouse-logo">
+            </div>
+            <div class="warehouse-info">
+                <h1>{{ stockHolder.stockHolderName }}</h1>
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                        <span>Общее количество остатков: {{ stockHolder.stockRecordsQuantity }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inventory-section">
+            <div *ngIf="stockHolder.stockRecordsQuantity === 0" class="empty-inventory">
+                <i class="fa-solid fa-box-open"></i>
+                <h3>На складе нет остатков</h3>
+            </div>
+
+            <div *ngIf="stockHolder.stockRecordsQuantity > 0" class="inventory-grid">
+                <div *ngFor="let item of stockHolder.stockRecords" class="inventory-card" (click)="handleStockRecordClick(item)">
+                    <div class="product-image-container">
+                        <img [src]="item.image"
+                             alt="{{ item.name }}"
+                             class="product-image"
+                             onerror="this.src='assets/default-product.svg'">
+                    </div>
+                    <div class="product-details">
+                        <h3>{{ item.name }}</h3>
+                        <div class="quantity-info">
+                            <i class="fa-solid fa-cubes"></i>
+                            <span>Количество: {{ item.quantity }} шт.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

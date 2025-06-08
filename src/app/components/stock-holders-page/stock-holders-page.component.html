@@ -1,1 +1,5 @@
-<h1>StockHolders</h1>
+<div class="container">
+    <div class="stock-holders-grid">
+        <stock-holder-card *ngFor="let stockHolder of stockHolders" [stockHolder]="stockHolder" (click)="handleStockHolderClick(stockHolder)"></stock-holder-card>
+    </div>
+</div>

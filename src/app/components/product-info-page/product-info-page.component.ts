@@ -20,7 +20,6 @@ export class ProductInfoPageComponent implements OnInit {
 
     product?: ProductInfo;
     selectedImage?: string;
-    quantity: number = 1;
     loading: boolean = true;
 
     constructor(
@@ -44,22 +43,11 @@ export class ProductInfoPageComponent implements OnInit {
 
             if (this.product) {
                 this.selectedImage = this.product.images[0];
-                //this.relatedProducts = this.productService.getRelatedProducts(id);
             }
         });
     }
 
     selectImage(img: string) {
         this.selectedImage = img;
-    }
-
-    incrementQuantity() {
-        this.quantity++;
-    }
-
-    decrementQuantity() {
-        if (this.quantity > 1) {
-            this.quantity--;
-        }
     }
 }
