@@ -1,12 +1,4 @@
 <div class="container py-5">
-    <nav *ngIf="product?.category"
-         aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/">Главная</a></li>
-            <li class="breadcrumb-item"><a routerLink="/">{{ product?.category?.name }}</a></li>
-        </ol>
-    </nav>
-
     <div *ngIf="!product && loading" class="loading-indicator">
         <div class="spinner"></div>
         Загрузка карточки товара...
